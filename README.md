@@ -1,7 +1,7 @@
 <!--
  * @LastEditors: panda_liu
- * @LastEditTime: 2020-10-06 19:42:25
- * @FilePath: \yunniubaod:\cs\计算机网络\demo\cookie.md
+ * @LastEditTime: 2020-10-06 22:21:31
+ * @FilePath: \demo\README.md
  * @Description: add some description
 -->
 # 为什么需要cookie
@@ -137,6 +137,7 @@ router.all('*', (req, res, next) => {
 浏览器端（vue.js）：
 
 ``` js
+// 封装ajax
 const Fetch = async (url = '', type = 'GET', data = {}, params: Data = {}) => {
   // 设置请求头
   const headerObj: Data = {
@@ -162,6 +163,26 @@ const Fetch = async (url = '', type = 'GET', data = {}, params: Data = {}) => {
   }
   // 返回格式化的response对象
   return response.json();
+}
+```
+
+``` js
+// 处理登录的函数
+handleLogin() {
+  const data = {
+    account: this.account,
+    pwd: this.pwd,
+  };
+  // 发起请求
+  login(data).then((res) => {
+    // 获取请求返回码和消息
+    const { code, msg } = res;
+    alert(msg);
+    // 如果返回码为0则为登录成功 跳转至主页
+    if (code === 0) {
+      this.$router.push("/profile");
+    }
+  });
 }
 ```
 
